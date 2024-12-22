@@ -25,3 +25,35 @@ spring:
       enabled: true
   main:
     allow-bean-definition-overriding: true
+#mybatis plus 设置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: org.qoerx.modules.*.entity
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: ASSIGN_ID
+      # 默认数据库表下划线命名
+      table-underline: true
+      #全局的 entity 的逻辑删除字段属性名,(逻辑删除下有效)
+      logic-delete-field: delFlag
+      #逻辑已删除值,(逻辑删除下有效)
+      logic-delete-value: 1
+      #逻辑未删除值,(逻辑删除下有效)
+      logic-not-delete-value: 0
+  configuration:
+    # 返回类型为Map,显示null对应的字段
+    call-setters-on-nulls: true
+
+
+logging:
+  level:
+    root: INFO
+    org.qoerx: DEBUG
+  file:
+    name: logs/app.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
